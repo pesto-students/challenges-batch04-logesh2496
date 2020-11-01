@@ -18,4 +18,12 @@ describe('bind method', () => {
     const bar = bind(foo, obj);
     expect(bar(10)).toBe(20);
   });
+  test('context should match', () => {
+    const obj = { y: 10 };
+    const foo = function () {
+      return JSON.stringify(this) === JSON.stringify(obj);
+    };
+    const bar = bind(foo, obj);
+    expect(bar()).toBeTruthy();
+  });
 });
